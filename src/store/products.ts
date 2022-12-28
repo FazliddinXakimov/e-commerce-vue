@@ -15,7 +15,8 @@ export const useProducts = defineStore({
 
         },
         categories: [] as Category[],
-        brands: [] as { id: number, title: string }[]
+        brands: [] as { id: number, title: string }[], 
+        
     }),
     getters: {
         getProducts: (state) => {

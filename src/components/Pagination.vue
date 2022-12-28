@@ -9,17 +9,15 @@
           <a class="page-link" href="#">{{ p }}</a>
         </li>
         <li class="page-item" :class="page == p ? 'active' : ''"
-          v-if="p === 1 && Math.abs(page - p) >= 3 && page!==4">
+          v-if="p === 1 && Math.abs(page - p) >= 3 && page !== 4">
           <span class="page-link" href="#">...</span>
         </li>
-        <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)"
-          v-if="Math.abs(page - p) <= 2">
+        <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)" v-if="Math.abs(page - p) <= 2">
           <a class="page-link" href="#">{{ p }}</a>
         </li>
 
 
-        <li class="page-item" :class="page == p ? 'active' : ''"
-          v-if="p === getPageCount && Math.abs(page - p) >= 3">
+        <li class="page-item" :class="page == p ? 'active' : ''" v-if="p === getPageCount && Math.abs(page - p) >= 3">
           <span class="page-link" href="#">...</span>
         </li>
         <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)"
@@ -28,25 +26,12 @@
         </li>
 
       </template>
-
-
-
     </ul>
-
-
   </nav>
 </template>
 
 <script lang="ts">
 export default {
-  data() {
-    return {
-      currentPage: 1,
-
-    }
-  },
-
-
   props: {
     count: {
       type: Number,
@@ -73,13 +58,10 @@ export default {
       console.log("this.page_size", this.page_size)
       return Math.ceil(this.count / this.page_size)
     },
-    getCurrentPage() {
-      return this.page / this.page_size + 1
-    }
+
   },
   methods: {
     onPaginate(value: number) {
-      this.currentPage = value
       this.$emit('onPaginate', value)
     }
   }

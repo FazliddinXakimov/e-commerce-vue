@@ -8,7 +8,7 @@ import { storeToRefs } from 'pinia'
 import { useProducts } from './store/products'
 import { ref, reactive, onMounted, watch } from 'vue'
 import 'vue-select/dist/vue-select.css'
-import Filter from '../common-types/filter'
+import Filter from './common-types/filter'
 
 const store = useProducts()
 const { products_data, categories, brands } = storeToRefs(store)
