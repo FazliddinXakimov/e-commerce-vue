@@ -6,23 +6,21 @@
       <template v-for="p of getPageCount" :key="p">
         <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)"
           v-if="p === 1 && Math.abs(page - p) >= 3">
-          <a class="page-link" href="#">{{ p }}</a>
+          <a class="page-link">{{ p }}</a>
         </li>
         <li class="page-item" :class="page == p ? 'active' : ''"
           v-if="p === 1 && Math.abs(page - p) >= 3 && page !== 4">
-          <span class="page-link" href="#">...</span>
+          <span class="page-link">...</span>
         </li>
         <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)" v-if="Math.abs(page - p) <= 2">
-          <a class="page-link" href="#">{{ p }}</a>
+          <a class="page-link">{{ p }}</a>
         </li>
-
-
         <li class="page-item" :class="page == p ? 'active' : ''" v-if="p === getPageCount && Math.abs(page - p) >= 3">
-          <span class="page-link" href="#">...</span>
+          <span class="page-link">...</span>
         </li>
         <li class="page-item" :class="page == p ? 'active' : ''" @click="onPaginate(p)"
           v-if="p === getPageCount && Math.abs(page - p) >= 3">
-          <a class="page-link" href="#">{{ p }}</a>
+          <a class="page-link">{{ p }}</a>
         </li>
 
       </template>
@@ -53,9 +51,6 @@ export default {
   computed: {
     getPageCount() {
 
-      console.log('this.count / this.page_size', this.count / this.page_size)
-      console.log("htis.count", this.count)
-      console.log("this.page_size", this.page_size)
       return Math.ceil(this.count / this.page_size)
     },
 

@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import Product from "../common-types/product"
+// import Product from "../common-types/product"
+
+import Product from '../common-types/product';
 
 const { product } = defineProps<{
   product: Product
@@ -11,14 +13,14 @@ const { product } = defineProps<{
 <template>
   <!-- <pre>{{ product }}</pre> -->
   <div class="card text-center">
-    <div class="card-header">{{ product?.title.ru }}</div>
+    <div class="card-header">{{ product?.title?.ru }}</div>
     <div class="card-body">
       <img v-if="product?.main_image" :src="product?.main_image" class="card-img-top" alt="...">
       <img v-else src="../assets/default-thumbnail.jpg" class="card-img-top" alt="...">
-      <h5 class="card-title">{{ product?.brands.title }}</h5>
+      <h5 class="card-title">{{ product?.brands?.title }}</h5>
 
       <p class="card-text">
-        {{ product?.category.title?.ru }}
+        {{ product?.category?.title?.ru }}
       </p>
     </div>
     <div class="card-footer text-muted">
@@ -28,9 +30,14 @@ const { product } = defineProps<{
           <vue-feather type="star" />{{ product?.rating }}
         </h6>
 
+
+
         <h6 class="d-flex justify-content-center align-items-center">
           <vue-feather type="dollar-sign" />{{ product?.price }}
         </h6>
+        <div v-if="$route.name=='Products'" >
+          <button @click="$router.push(`/products/${product?.id}`)" class="btn btn-primary btn-sm">Detail</button>
+        </div>
 
 
 

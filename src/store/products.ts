@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import  Category  from '../common-types/category';
+import Category from '../common-types/category';
 import Product from '../common-types/product'
 const url = "http://dicore.uz:1440/api/v1";
 
@@ -15,8 +15,9 @@ export const useProducts = defineStore({
 
         },
         categories: [] as Category[],
-        brands: [] as { id: number, title: string }[], 
-        
+        brands: [] as { id: number, title: string }[],
+        product: {} as Product
+
     }),
     getters: {
         getProducts: (state) => {
@@ -27,6 +28,9 @@ export const useProducts = defineStore({
         },
         getBrands: state => {
             return state.brands
+        },
+        getSingleProduct: state => {
+            return state.product
         }
     },
     actions: {
@@ -34,6 +38,14 @@ export const useProducts = defineStore({
             const response = await axios({ url: `${url}/products/products/`, method: "GET", params })
             this.products_data = response.data
         },
+        async fetchSingleProduct(id: any) {
+            const response = await axios({ url: `${url}/products/products/${id}/`, method: "GET" })
+            this.product = response.data
+        },
+        updateProduct(data: { id: any, data: any }) {
+            return axios({ url: `${url}/products/products/${data.id}/`, method: "PATCH", data: data.data })
+        },
+
         async fetchCategories() {
             const response = await axios({ url: `${url}/knowledge_base/categories/`, method: "GET", params: { page: 1, page_size: 20 } })
             this.categories = response.data.results

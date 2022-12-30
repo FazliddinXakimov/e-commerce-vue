@@ -19,5 +19,10 @@ export default interface Product {
     price: string,
     price_old: string,
     rating: string,
-    main_image: string | null
+    main_image: string | null,
+    product_description?: {
+        uz: string,
+        ru: string, 
+        oz: string
+    }
 }
